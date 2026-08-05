@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7.38'
+    }
+}
+
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+version = '1.0'
+group = 'net.erutobusiness'
+base { archivesName = 'via_romana_extras' }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            mods { via_romana_extras { source sourceSets.main } }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            mods { via_romana_extras { source sourceSets.main } }
+        }
+    }
+}
+
+mixin {
+    add sourceSets.main, 'via_romana_extras.refmap.json'
+    config 'via_romana_extras.mixins.json'
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // Via Romana の公開クラス（PathGraph / CommonConfig / PathUtils / ChartingScreen）を
+    // 呼ぶためのコンパイル用参照。実行時は導入済みの本体を使う（同梱しない・fork でもない）。
+    compileOnly files('libs/via_romana.jar')
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'   : 'via_romana_extras',
+            'Specification-Version' : '1',
+            'Implementation-Title'  : 'Via Romana Extras',
+            'Implementation-Version': project.version,
+            'MixinConfigs'          : 'via_romana_extras.mixins.json'
+        ])
+    }
+}

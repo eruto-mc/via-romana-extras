@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.erutobusiness.viaromanaextras.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "via_romana_extras.refmap.json",
+  "mixins": [],
+  "client": [
+    "ChartingScreenMixin",
+    "PathUtilsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

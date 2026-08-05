@@ -1,0 +1,11 @@
+{
+  "gui.via_romana_extras.materials.button": "Road Materials",
+  "gui.via_romana_extras.materials.title": "Road Materials",
+  "gui.via_romana_extras.materials.hint": "Declare up to 9 blocks. Only these count as road.",
+  "gui.via_romana_extras.materials.from_ground": "Add block under your feet",
+  "gui.via_romana_extras.materials.clear": "Clear all",
+  "gui.via_romana_extras.materials.done": "Done",
+  "gui.via_romana_extras.materials.empty": "Nothing declared yet - no block will count as road.",
+  "gui.via_romana_extras.materials.slot_hint": "Left click an item below to add. Right click a slot to remove.",
+  "gui.via_romana_extras.materials.full": "All 9 slots are full."
+}

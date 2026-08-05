@@ -1,0 +1,11 @@
+{
+  "gui.via_romana_extras.materials.button": "道の材料",
+  "gui.via_romana_extras.materials.title": "道の材料を決める",
+  "gui.via_romana_extras.materials.hint": "9種類まで登録できる。登録したブロックだけが道として数えられる。",
+  "gui.via_romana_extras.materials.from_ground": "足元のブロックを入れる",
+  "gui.via_romana_extras.materials.clear": "全部消す",
+  "gui.via_romana_extras.materials.done": "決定",
+  "gui.via_romana_extras.materials.empty": "まだ何も登録していない。このままだとどのブロックも道にならない。",
+  "gui.via_romana_extras.materials.slot_hint": "下の持ち物を左クリックで追加。枠を右クリックで取り消し。",
+  "gui.via_romana_extras.materials.full": "9つの枠が全部埋まっている。"
+}

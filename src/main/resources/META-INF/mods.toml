@@ -1,0 +1,46 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/RasaNovum/Via_Romana/issues"
+
+[[mixins]]
+config="via_romana_extras.mixins.json"
+
+[[mods]]
+    modId="via_romana_extras"
+    version="${file.jarVersion}"
+    displayName="Via Romana Extras"
+    authors="erutobusiness"
+    description='''
+Via Romana に2つ足す。
+
+1. 騎乗中も、記録した道の近くで移動が速くなる（本体はプレイヤーの足にしか効かない）。
+2. 測量画面から「この道の材料」を最大9種類まで宣言させ、
+   宣言したブロックだけを道判定に使う（既定の部分一致リストを置き換える）。
+
+どちらも Via Romana 本来の役割なので、上流へも提案する。取り込まれたら本MODは要らなくなる。
+
+⚠ 2 の判定はクライアント側で完結する（Via Romana はサーバーで検算しない）。
+   本MODを外したクライアントは宣言を素通りできるので、厳密な制限ではない。
+'''
+
+[[dependencies.via_romana_extras]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.via_romana_extras]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.via_romana_extras]]
+    modId="via_romana"
+    mandatory=true
+    versionRange="[2.2,)"
+    ordering="AFTER"
+    side="BOTH"

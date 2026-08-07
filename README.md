@@ -3,7 +3,12 @@
 Two additions to [Via Romana](https://modrinth.com/mod/via-romana): **roads speed up mounts too**,
 and **you declare what a road is made of**.
 
-Minecraft 1.20.1 / Forge. Requires Via Romana. MIT.
+Minecraft 1.20.1 / Forge. Requires Via Romana. **GPL-3.0.**
+
+> Via Romana itself is GPL-3.0. This mod injects into its internals and mirrors the shape of its
+> `SpeedHandler`, so it is licensed the same way rather than under the permissive licence used by
+> the rest of [eruto-mc](https://github.com/eruto-mc). No Via Romana code is bundled or
+> redistributed — see *This is not a fork* below.
 
 ## 1. Mounted travel gets the road bonus
 

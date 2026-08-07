@@ -45,16 +45,18 @@ mixin {
     config 'via_romana_extras.mixins.json'
 }
 
+repositories {
+    // CurseForge の任意のファイルを取れる maven。⚠ **ファイルIDで指す**ので、
+    // Modrinth の「同じ版番号で Forge/Fabric が併存」も「版名に + が入る」も起きない。
+    maven { url = "https://cursemaven.com" }
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    // Via Romana の公開クラス（PathGraph / CommonConfig / PathUtils / ChartingScreen）を
-    // 呼ぶためのコンパイル用参照。実行時は導入済みの本体を使う（同梱しない・fork でもない）。
-    // ⚠ **maven にできない。** 成果物は
-    //    api.modrinth.com/maven/maven/modrinth/via-romana/2.2.2+1.20.1-forge/ に実在するが、
-    //    **Gradle は版名の `+` を「動的バージョン」の記号として解釈する**ので指定できない
-    //    （2026-08-07 に確認。jar も pom も HTTP 200 で取れるのに Could not find になる）。
-    compileOnly files('libs/via_romana.jar')
+    // Via Romana 2.2.2+1.20.1-forge。⚠ Modrinth だと版名の `+` を Gradle が
+    // 「動的バージョン」と解釈して指定できなかった。
+    compileOnly "curse.maven:via-romana-1026508:7427731"
 }
 
 jar {

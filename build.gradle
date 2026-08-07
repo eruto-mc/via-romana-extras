@@ -50,6 +50,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     // Via Romana の公開クラス（PathGraph / CommonConfig / PathUtils / ChartingScreen）を
     // 呼ぶためのコンパイル用参照。実行時は導入済みの本体を使う（同梱しない・fork でもない）。
+    // ⚠ **maven にできない。** 成果物は
+    //    api.modrinth.com/maven/maven/modrinth/via-romana/2.2.2+1.20.1-forge/ に実在するが、
+    //    **Gradle は版名の `+` を「動的バージョン」の記号として解釈する**ので指定できない
+    //    （2026-08-07 に確認。jar も pom も HTTP 200 で取れるのに Could not find になる）。
     compileOnly files('libs/via_romana.jar')
 }
 

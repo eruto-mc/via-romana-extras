@@ -70,14 +70,36 @@ public class RoadMaterialsScreen extends Screen {
                 .bounds(this.width / 2 - 50, btnY + 24, 100, 20).build());
     }
 
-    /** 持ち物に入らないブロック（dirt_path など）のための入口。 */
+    /**
+     * 持ち物に入らないブロック（dirt_path など）のための入口。
+     *
+     * <p><b>⚠ {@code blockPosition().below()} で拾わない。</b>
+     * {@code blockPosition()} は<b>プレイヤーの足元の座標を切り下げたもの</b>
+     * （{@code Entity.setPosRaw} が {@code Mth.floor(x,y,z)} で作る）なので、
+     * <b>高さが 1.0 未満のブロックの上ではそのブロック自身を指す</b>。
+     * {@code minecraft:dirt_path} は {@code Block.box(0,0,0, 16,15,16)}
+     * （{@code FarmBlock.SHAPE} の使い回し・高さ 0.9375）なので、
+     * y=63 の土の道に立つとプレイヤーの Y は 63.9375、切り下げて 63 ＝ 土の道そのもの。
+     * そこから {@code below()} すると <b>y=62 ＝ 道の下に埋まっている土</b>を拾ってしまう。
+     * 実際 2026-09-04 まで、この画面で土の道を登録すると
+     * {@code minecraft:dirt} が入っていた（ハーフブロック・農地・雪も同じ形で外れる）。
+     *
+     * <p>{@code getOnPos()} は<b>プレイヤーを支えているブロックそのもの</b>を返す
+     * （{@code getOnPos(1.0E-5F)} ＝ {@code mainSupportingBlockPos} をそのまま返す経路）。
+     * 足元に草や水が生えていても支えのほうを拾うので、こちらが正しい。
+     * 支えが無いとき（飛行中・落下中）だけ 1つ下を見る。
+     */
     private void addBlockUnderFeet() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) {
             return;
         }
-        BlockPos below = mc.player.blockPosition().below();
-        BlockState state = mc.level.getBlockState(below);
+        BlockPos pos = mc.player.getOnPos();
+        BlockState state = mc.level.getBlockState(pos);
+        if (state.isAir()) {
+            pos = pos.below();
+            state = mc.level.getBlockState(pos);
+        }
         if (!state.isAir()) {
             RoadMaterials.add(state.getBlock());
         }

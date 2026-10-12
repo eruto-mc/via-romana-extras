@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /**
  * 道の材料を決める画面。3×3 の枠に最大9種類まで入れる。
  *
- * <p><b>枠は「見本を写す」ものであって、アイテムを預けるスロットではない。</b>
+ * <p><b>枠は「見本をコピーする」ものであって、アイテムを預けるスロットではない。</b>
  * 理由: {@code minecraft:dirt_path} は<b>サバイバルでアイテムとして手に入らない</b>
  * （ルートテーブルが {@code minecraft:dirt} しか落とさず、レシピも1件も無い。vanilla jar で確認）。
  * これは Via Romana の既定リストの筆頭で、シャベル整地の到達点でもある。
@@ -133,7 +133,7 @@ public class RoadMaterialsScreen extends Screen {
         int statusColor = RoadMaterials.isEmpty() ? 0xFFFF6060 : 0xFFA0A0A0;
         g.drawCenteredString(this.font, status, this.width / 2, invY - 14, statusColor);
 
-        // 持ち物（36枠）。クリックで材料に写す。アイテムは動かない
+        // 持ち物（36枠）。クリックで材料にコピーする。アイテムは動かない
         Inventory inv = Minecraft.getInstance().player == null
                 ? null : Minecraft.getInstance().player.getInventory();
         if (inv != null) {

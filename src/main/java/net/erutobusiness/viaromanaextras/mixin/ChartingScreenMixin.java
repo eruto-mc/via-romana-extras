@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  *
  * <p>{@code ChartingScreen} は {@code Screen} を継承していて {@code init()} を上書きしている。
  * その末尾に自前のボタンを1つ足すだけ。Via Romana 側の widget（{@code MapSquareButton} 等）は
- * <b>使わない</b>——構造を知るほど上流の更新で壊れやすくなるため、素の {@code Button} を使う。
+ * <b>使わない</b>——構造を知るほど元の MOD の更新で壊れやすくなるため、素の {@code Button} を使う。
  * 見た目が地図の意匠と揃わないのは承知のうえ（必要なら後で寄せる）。
  *
  * <p>⚠ {@code @Inject} は複数MODが同じ場所に入っても共存できる。

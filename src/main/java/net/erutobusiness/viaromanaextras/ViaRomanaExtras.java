@@ -24,7 +24,7 @@ import net.minecraftforge.fml.config.ModConfig;
  * 数字の一覧は {@code selection/travel-speed-table.md}。
  *
  * <p><b>fork ではない。</b> Via Romana の公開クラスを呼ぶだけで、jar の同梱も再配布もしない。
- * どちらの機能も上流本来の役割なので issue を出す。取り込まれたら本MODは役目を終える。
+ * どちらの機能も元の MOD 本来の役割なので issue を出す。取り込まれたら本MODは役目を終える。
  */
 @Mod(ViaRomanaExtras.MOD_ID)
 public class ViaRomanaExtras {
